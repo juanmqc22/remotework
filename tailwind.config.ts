@@ -8,31 +8,21 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        bg: {
-          DEFAULT: "#ffffff",
-          dark: "#0a0a0a",
-          surface: "#f8f7f6",
-          "surface-dark": "#1a1a1a",
-        },
-        text: {
-          primary: "#1a1a1a",
-          "primary-dark": "#f5f5f5",
-          secondary: "#5c5c5c",
-          "secondary-dark": "#a0a0a0",
-        },
-        border: {
-          DEFAULT: "#e5e3e0",
-          dark: "#2a2a2a",
-        },
-        accent: {
-          DEFAULT: "#0066ff",
-          dark: "#0052cc",
-        },
-        semantic: {
-          success: "#10b981",
-          warning: "#f59e0b",
-          error: "#ef4444",
-        },
+        bg: "#ffffff",
+        "bg-dark": "#0a0a0a",
+        "bg-surface": "#f8f7f6",
+        "bg-surface-dark": "#1a1a1a",
+        text: "#1a1a1a",
+        "text-dark": "#f5f5f5",
+        "text-secondary": "#5c5c5c",
+        "text-secondary-dark": "#a0a0a0",
+        border: "#e5e3e0",
+        "border-dark": "#2a2a2a",
+        accent: "#0066ff",
+        "accent-dark": "#0052cc",
+        "success": "#10b981",
+        "warning": "#f59e0b",
+        "error": "#ef4444",
       },
       spacing: {
         xs: "0.5rem",
