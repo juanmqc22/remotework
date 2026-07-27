@@ -61,7 +61,7 @@ export default function Footer() {
                 <span className="relative size-2 rounded-[2px] bg-void" />
               </span>
               <span className="font-display text-[0.95rem] font-bold tracking-tight text-chalk">
-                Modern Talent
+                Avante People
               </span>
             </div>
 
@@ -106,7 +106,7 @@ export default function Footer() {
         <Hairline className="my-12 opacity-60" />
 
         <div className="flex flex-col items-center justify-between gap-4 text-sm text-dim md:flex-row">
-          <p>© {year} Modern Talent Acquisition. All rights reserved.</p>
+          <p>© {year} Avante People. All rights reserved.</p>
           <p className="text-center md:text-right">
             Built for teams that refuse to compromise on who they hire.
           </p>

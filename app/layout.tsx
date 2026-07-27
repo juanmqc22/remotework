@@ -25,8 +25,8 @@ const instrument = Instrument_Serif({
 
 export const metadata: Metadata = {
   title: {
-    default: "Modern Talent — Hire elite Latin American talent in 72 hours",
-    template: "%s | Modern Talent",
+    default: "Avante People — Hire elite Latin American talent in 72 hours",
+    template: "%s | Avante People",
   },
   description:
     "We are the hiring team you don't have. Tell us the role; we source, vet and interview across Latin America and hand you 4–6 finalists you'd actually hire — in 72 hours, in your time zone, at 40–60% less than a US hire.",
@@ -40,15 +40,15 @@ export const metadata: Metadata = {
     "US LatAm hiring",
   ],
   openGraph: {
-    title: "Modern Talent — Hire elite Latin American talent in 72 hours",
+    title: "Avante People — Hire elite Latin American talent in 72 hours",
     description:
       "Pre-vetted, English-fluent LatAm professionals in your time zone. Four to six finalists in 72 hours. You pay when someone starts.",
     type: "website",
-    siteName: "Modern Talent",
+    siteName: "Avante People",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Modern Talent — Hire elite Latin American talent in 72 hours",
+    title: "Avante People — Hire elite Latin American talent in 72 hours",
     description:
       "The hiring team you don't have. 4–6 vetted finalists in 72 hours, 0–3 hours from your time zone.",
   },

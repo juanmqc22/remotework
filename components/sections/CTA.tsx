@@ -79,7 +79,7 @@ export default function CTA() {
           <Reveal delay={0.3} className="mt-10">
             <div className="flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
               <Button
-                href="mailto:hello@moderntalent.com?subject=Discovery%20call"
+                href="mailto:hello@avantepeople.com?subject=Discovery%20call"
                 size="lg"
                 className="w-full sm:w-auto"
               >
@@ -90,7 +90,7 @@ export default function CTA() {
                 />
               </Button>
               <Button
-                href="mailto:hello@moderntalent.com?subject=Hiring%20Health%20Assessment"
+                href="mailto:hello@avantepeople.com?subject=Hiring%20Health%20Assessment"
                 variant="secondary"
                 size="lg"
                 className="w-full sm:w-auto"

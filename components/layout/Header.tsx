@@ -60,7 +60,7 @@ export default function Header() {
                 <span className="relative size-2 rounded-[2px] bg-void" />
               </span>
               <span className="font-display text-[0.95rem] font-bold tracking-tight text-chalk">
-                Modern Talent
+                Avante People
               </span>
             </a>
 

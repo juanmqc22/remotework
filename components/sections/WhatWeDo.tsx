@@ -80,7 +80,7 @@ export default function WhatWeDo() {
           highlight={["recruiting", "team"]}
           lead={
             <>
-              Modern Talent plugs into your company as an outsourced talent
+              Avante People plugs into your company as an outsourced talent
               function. You keep every hiring decision. We absorb everything that
               happens before it.
             </>
