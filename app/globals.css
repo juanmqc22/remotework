@@ -189,3 +189,43 @@ a:hover {
   white-space: nowrap;
   border-width: 0;
 }
+
+/* Color utility classes */
+@layer utilities {
+  .bg-bg {
+    @apply bg-[#ffffff] dark:bg-[#0a0a0a];
+  }
+  .bg-bg-dark {
+    @apply bg-[#0a0a0a];
+  }
+  .bg-bg-surface {
+    @apply bg-[#f8f7f6] dark:bg-[#1a1a1a];
+  }
+  .bg-bg-surface-dark {
+    @apply bg-[#1a1a1a];
+  }
+  .text-text {
+    @apply text-[#1a1a1a] dark:text-[#f5f5f5];
+  }
+  .text-text-dark {
+    @apply text-[#f5f5f5];
+  }
+  .text-text-secondary {
+    @apply text-[#5c5c5c] dark:text-[#a0a0a0];
+  }
+  .text-text-secondary-dark {
+    @apply text-[#a0a0a0];
+  }
+  .border-border {
+    @apply border-[#e5e3e0] dark:border-[#2a2a2a];
+  }
+  .border-border-dark {
+    @apply border-[#2a2a2a];
+  }
+  .bg-accent {
+    @apply bg-[#0066ff];
+  }
+  .bg-accent-dark {
+    @apply bg-[#0052cc];
+  }
+}
