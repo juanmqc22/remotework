@@ -1,5 +1,11 @@
 import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
 import Hero from "@/components/sections/Hero";
+import Problem from "@/components/sections/Problem";
+import Opportunity from "@/components/sections/Opportunity";
+import Process from "@/components/sections/Process";
+import Philosophy from "@/components/sections/Philosophy";
+import CTA from "@/components/sections/CTA";
 
 export default function Home() {
   return (
@@ -7,7 +13,13 @@ export default function Home() {
       <Header />
       <main className="flex-1">
         <Hero />
+        <Problem />
+        <Opportunity />
+        <Process />
+        <Philosophy />
+        <CTA />
       </main>
+      <Footer />
     </div>
   );
 }
