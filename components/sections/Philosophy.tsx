@@ -62,7 +62,7 @@ export default function Philosophy() {
             Why it works.
           </h2>
           <p className="text-lg text-text-secondary max-w-2xl">
-            We succeed because we think differently about hiring. Here's what guides our work.
+            We succeed because we think differently about hiring. Here&apos;s what guides our work.
           </p>
         </motion.div>
 

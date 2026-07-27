@@ -11,7 +11,7 @@ export default function Footer() {
           <div>
             <h3 className="font-semibold text-text mb-4">Modern Talent</h3>
             <p className="text-sm text-text-secondary">
-              Strategic hiring partner for growing companies.
+              Connecting growing US companies with exceptional, English-fluent talent across Latin America.
             </p>
           </div>
           <div>
@@ -20,12 +20,17 @@ export default function Footer() {
             </h4>
             <ul className="space-y-2 text-sm text-text-secondary">
               <li>
-                <a href="#" className="hover:text-text transition">
+                <a href="#why-latam" className="hover:text-text transition">
+                  Why LatAm
+                </a>
+              </li>
+              <li>
+                <a href="#how-it-works" className="hover:text-text transition">
                   How It Works
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-text transition">
+                <a href="#process" className="hover:text-text transition">
                   Process
                 </a>
               </li>

@@ -10,22 +10,22 @@ export default function Opportunity() {
     {
       icon: Clock,
       title: "72-Hour Delivery",
-      description: "Skip weeks of recruiting. Get pre-qualified candidates in 72 hours.",
+      description: "Skip weeks of recruiting. Get pre-qualified LatAm candidates in 72 hours.",
     },
     {
       icon: Shield,
-      title: "Reduced Risk",
-      description: "We filter ruthlessly. Only candidates we'd hire ourselves make it to you.",
+      title: "Rigorously Vetted",
+      description: "We filter ruthlessly for skills, English fluency, and reliability. Only candidates we'd hire ourselves make it to you.",
     },
     {
       icon: Zap,
-      title: "Save Your Time",
-      description: "We handle search and evaluation. You focus on what matters—running your business.",
+      title: "Save Your Time & Budget",
+      description: "We handle search and evaluation. You get a stronger team for less, and focus on running your business.",
     },
     {
       icon: Handshake,
       title: "Complete Support",
-      description: "We guide candidates and your team through interviews and negotiations.",
+      description: "We guide candidates and your team through interviews, negotiations, and onboarding.",
     },
   ];
 

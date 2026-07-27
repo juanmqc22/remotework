@@ -18,7 +18,7 @@ export default function Process() {
       number: "02",
       icon: Search,
       title: "Search",
-      description: "We aggressively search our network and sourcing channels for qualified candidates.",
+      description: "We tap our network across Latin America — Argentina, Colombia, Mexico, Brazil, and beyond — for qualified candidates.",
       timeline: "Days 1–2",
     },
     {
@@ -123,7 +123,7 @@ export default function Process() {
             From brief to hire: 72 hours
           </p>
           <p className="text-text-secondary">
-            That's how long it takes to deliver exceptional candidates.
+            That&apos;s how long it takes to deliver exceptional candidates.
           </p>
         </motion.div>
       </Container>

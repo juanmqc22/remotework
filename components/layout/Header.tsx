@@ -17,14 +17,14 @@ export default function Header() {
           </div>
 
           <nav className="hidden md:flex items-center gap-8">
+            <a href="#why-latam" className="text-sm text-text-secondary hover:text-text transition">
+              Why LatAm
+            </a>
             <a href="#how-it-works" className="text-sm text-text-secondary hover:text-text transition">
               How It Works
             </a>
             <a href="#process" className="text-sm text-text-secondary hover:text-text transition">
               Process
-            </a>
-            <a href="#about" className="text-sm text-text-secondary hover:text-text transition">
-              About
             </a>
             <Button size="md">Book a Call</Button>
           </nav>
@@ -40,14 +40,14 @@ export default function Header() {
 
         {mobileOpen && (
           <nav className="md:hidden border-t border-border mt-4 pt-4 space-y-3">
+            <a href="#why-latam" className="block text-sm text-text-secondary hover:text-text">
+              Why LatAm
+            </a>
             <a href="#how-it-works" className="block text-sm text-text-secondary hover:text-text">
               How It Works
             </a>
             <a href="#process" className="block text-sm text-text-secondary hover:text-text">
               Process
-            </a>
-            <a href="#about" className="block text-sm text-text-secondary hover:text-text">
-              About
             </a>
             <Button size="md" className="w-full">
               Book a Call

@@ -8,24 +8,24 @@ import { AlertCircle, Clock, Users, TrendingDown } from "lucide-react";
 export default function Problem() {
   const problems = [
     {
+      icon: TrendingDown,
+      title: "Local Talent Is Expensive",
+      description: "Competitive US salaries put strong hires out of reach for small and mid-size teams — before benefits and overhead.",
+    },
+    {
       icon: Clock,
-      title: "Slow Process",
-      description: "Traditional recruiting takes 3–4 weeks per hire. You're losing momentum and market opportunity.",
+      title: "Offshore Means Odd Hours",
+      description: "Typical offshore outsourcing runs 8–12 hours out of sync with US business hours, killing real-time collaboration.",
     },
     {
       icon: Users,
-      title: "Poor Quality",
-      description: "Job boards generate hundreds of unqualified applications. Your time is wasted filtering noise.",
-    },
-    {
-      icon: TrendingDown,
-      title: "High Risk",
-      description: "Bad hires are expensive. Misaligned candidates drain your team's energy and culture.",
+      title: "Freelance Platforms Are a Gamble",
+      description: "No vetting, no accountability, and no support when a contractor disappears mid-project.",
     },
     {
       icon: AlertCircle,
-      title: "No Support",
-      description: "You're left to navigate negotiations, evaluations, and onboarding alone.",
+      title: "Traditional Recruiting Is Slow",
+      description: "Weeks of searching, filtering, and negotiating — with no guarantee the hire actually works out.",
     },
   ];
 
@@ -59,10 +59,10 @@ export default function Problem() {
           className="mb-12 md:mb-16"
         >
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-4">
-            Hiring is broken.
+            Every other option has a catch.
           </h2>
           <p className="text-lg text-text-secondary max-w-2xl">
-            Traditional recruiting is slow, noisy, and risky. Recruiters manage volume, not quality. Job boards waste your time. You need something different.
+            Local hires stretch your budget. Offshore outsourcing stretches your patience. Freelance platforms stretch your luck. You need something different.
           </p>
         </motion.div>
 
@@ -73,7 +73,7 @@ export default function Problem() {
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
         >
-          {problems.map((problem, index) => (
+          {problems.map((problem) => (
             <motion.div
               key={problem.title}
               variants={itemVariants}

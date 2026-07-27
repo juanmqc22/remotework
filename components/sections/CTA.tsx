@@ -18,10 +18,10 @@ export default function CTA() {
           className="max-w-3xl mx-auto text-center"
         >
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-6">
-            Ready to hire better?
+            Ready to hire top LatAm talent?
           </h2>
           <p className="text-lg text-text-secondary mb-8 max-w-2xl mx-auto">
-            Start with a free Hiring Health Assessment, or book a discovery call to discuss your next hire.
+            Start with a free Hiring Health Assessment, or book a discovery call to discuss your next hire from Latin America.
           </p>
 
           <motion.div

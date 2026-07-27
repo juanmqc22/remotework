@@ -43,10 +43,10 @@ export default function Hero() {
           <div className="space-y-8">
             <motion.div className="space-y-4" variants={itemVariants}>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
-                Your next great hire starts here.
+                World-class talent from Latin America, hired in 72 hours.
               </h1>
               <p className="text-lg md:text-xl text-text-secondary leading-relaxed">
-                Hire exceptional talent in 72 hours. No spam lists. No endless recruiting. Just the right people.
+                Pre-vetted, English-fluent professionals in your time zone — at a fraction of the cost of hiring locally. No spam lists. No endless recruiting.
               </p>
             </motion.div>
 
@@ -65,12 +65,12 @@ export default function Hero() {
                 <p className="text-sm text-text-secondary">Candidate delivery</p>
               </div>
               <div className="space-y-2">
-                <div className="text-2xl font-bold text-accent">4–6</div>
-                <p className="text-sm text-text-secondary">Pre-qualified candidates</p>
+                <div className="text-2xl font-bold text-accent">0–3h</div>
+                <p className="text-sm text-text-secondary">Time zone difference</p>
               </div>
               <div className="space-y-2">
-                <div className="text-2xl font-bold text-accent">100%</div>
-                <p className="text-sm text-text-secondary">Strategic support</p>
+                <div className="text-2xl font-bold text-accent">4–6</div>
+                <p className="text-sm text-text-secondary">Pre-qualified candidates</p>
               </div>
             </motion.div>
           </div>
