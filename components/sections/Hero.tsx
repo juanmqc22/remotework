@@ -1,131 +1,200 @@
 "use client";
 
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { ArrowRight, Sparkles } from "lucide-react";
 import Container from "@/components/layout/Container";
 import Button from "@/components/ui/Button";
-import { Briefcase, Users, CheckCircle, ArrowRight } from "lucide-react";
+import Counter from "@/components/ui/Counter";
+import Marquee from "@/components/ui/Marquee";
+import { Aurora, GridBackdrop } from "@/components/ui/Atmosphere";
+import { RevealWords } from "@/components/ui/Reveal";
+
+const EASE = [0.16, 1, 0.3, 1] as const;
+
+const stats = [
+  { value: <Counter to={72} suffix="h" />, label: "Brief to shortlist" },
+  { value: "0–3h", label: "Gap to US hours" },
+  { value: "4–6", label: "Finalists per role" },
+  {
+    value: <Counter to={60} suffix="%" prefix="~" />,
+    label: "Lower cost per hire",
+  },
+];
+
+const ticker = [
+  "Senior React Engineers",
+  "Argentina",
+  "Product Designers",
+  "Colombia",
+  "RevOps Analysts",
+  "Mexico",
+  "Data Engineers",
+  "Brazil",
+  "Customer Success Leads",
+  "Chile",
+  "QA Automation",
+  "Uruguay",
+  "Finance Analysts",
+  "Costa Rica",
+  "Growth Marketers",
+  "Peru",
+];
 
 export default function Hero() {
-  const staggerContainer = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3,
-      },
-    },
-  };
+  const ref = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6 },
-    },
-  };
+  // The hero recedes as the next section climbs over it — a rack focus, not a jump.
+  const y = useTransform(scrollYProgress, [0, 1], [0, 140]);
+  const opacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.94]);
+  const blur = useTransform(scrollYProgress, [0, 1], ["blur(0px)", "blur(6px)"]);
 
   return (
-    <section className="relative py-16 md:py-24 lg:py-32 overflow-hidden">
-      {/* Gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-surface via-bg to-bg -z-10" />
+    <section
+      ref={ref}
+      id="top"
+      className="relative isolate flex min-h-[100svh] flex-col justify-center overflow-hidden pt-28 pb-24"
+    >
+      <GridBackdrop />
+      <Aurora intensity="strong" />
 
-      <Container>
-        <motion.div
-          className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center"
-          variants={staggerContainer}
-          initial="hidden"
-          animate="visible"
-        >
-          {/* Left: Text Content */}
-          <div className="space-y-8">
-            <motion.div className="space-y-4" variants={itemVariants}>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
-                World-class talent from Latin America, hired in 72 hours.
-              </h1>
-              <p className="text-lg md:text-xl text-text-secondary leading-relaxed">
-                Pre-vetted, English-fluent professionals in your time zone — at a fraction of the cost of hiring locally. No spam lists. No endless recruiting.
-              </p>
+      {/* Overhead key light */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 -top-1/4 z-0 h-[70vh] bg-[radial-gradient(ellipse_55%_50%_at_50%_50%,rgba(255,138,61,0.2),transparent_70%)]"
+      />
+      {/* Vignette last, so the frame darkens without the blooms being erased */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_45%,transparent_25%,rgba(9,7,15,0.8)_100%)]"
+      />
+
+      <motion.div style={{ y, opacity, scale, filter: blur }}>
+        <Container size="wide" className="relative z-10">
+          <div className="mx-auto max-w-5xl text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.9, ease: EASE, delay: 0.25 }}
+              className="inline-flex items-center gap-2.5 rounded-full border border-line-2 bg-surface/50 px-4 py-1.5 backdrop-blur-md"
+            >
+              <span className="relative flex size-1.5">
+                <span className="absolute inline-flex size-full animate-ping rounded-full bg-aurora opacity-75" />
+                <span className="relative inline-flex size-1.5 rounded-full bg-aurora" />
+              </span>
+              <span className="text-eyebrow text-mist">
+                Talent partner · LatAm → US
+              </span>
             </motion.div>
 
-            <motion.div className="flex flex-col sm:flex-row gap-4" variants={itemVariants}>
-              <Button size="lg" className="gap-2">
-                Book a Discovery Call <ArrowRight size={18} />
+            <h1 className="text-cinema mt-7 headline">
+              <RevealWords
+                text="We find, vet and deliver your next hire in 72 hours."
+                highlight={["72", "hours."]}
+                delay={0.45}
+                animateOnMount
+              />
+            </h1>
+
+            <motion.p
+              initial={{ opacity: 0, y: 24, filter: "blur(8px)" }}
+              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              transition={{ duration: 1, ease: EASE, delay: 1.15 }}
+              className="mx-auto mt-7 max-w-2xl text-lg leading-relaxed text-mist md:text-xl"
+            >
+              Tell us the role. We run the entire search across Latin America —
+              sourcing, screening, skills and English assessment, references — and
+              hand you four to six finalists you&apos;d actually hire.{" "}
+              <span className="text-chalk">
+                Your time zone. Around half the cost.
+              </span>
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.9, ease: EASE, delay: 1.35 }}
+              className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4"
+            >
+              <Button href="#contact" size="lg" className="w-full sm:w-auto">
+                Book a discovery call
+                <ArrowRight
+                  size={17}
+                  className="transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/btn:translate-x-1"
+                />
               </Button>
-              <Button size="lg" variant="secondary">
-                Take Assessment
+              <Button
+                href="#what-we-do"
+                variant="secondary"
+                size="lg"
+                className="w-full sm:w-auto"
+              >
+                <Sparkles size={16} className="text-gold" />
+                See exactly how it works
               </Button>
             </motion.div>
 
-            <motion.div className="grid grid-cols-1 sm:grid-cols-3 gap-6" variants={itemVariants}>
-              <div className="space-y-2">
-                <div className="text-2xl font-bold text-accent">72h</div>
-                <p className="text-sm text-text-secondary">Candidate delivery</p>
-              </div>
-              <div className="space-y-2">
-                <div className="text-2xl font-bold text-accent">0–3h</div>
-                <p className="text-sm text-text-secondary">Time zone difference</p>
-              </div>
-              <div className="space-y-2">
-                <div className="text-2xl font-bold text-accent">4–6</div>
-                <p className="text-sm text-text-secondary">Pre-qualified candidates</p>
-              </div>
-            </motion.div>
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1, delay: 1.6 }}
+              className="mt-6 text-sm text-dim"
+            >
+              No retainers. No résumé dumps. You pay when someone starts.
+            </motion.p>
           </div>
 
-          {/* Right: Visual */}
+          {/* Stat bar */}
           <motion.div
-            className="relative hidden lg:block"
-            variants={itemVariants}
+            initial={{ opacity: 0, y: 32 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease: EASE, delay: 1.7 }}
+            className="mx-auto mt-14 grid max-w-4xl grid-cols-2 gap-px overflow-hidden rounded-2xl border border-line bg-line/60 md:grid-cols-4"
           >
-            <div className="relative h-96 bg-surface rounded-2xl border border-border p-8 space-y-6 overflow-hidden">
-              {/* Animated hiring pipeline */}
-              <div className="space-y-4">
-                {[
-                  { label: "Open Position", icon: Briefcase, progress: 0 },
-                  { label: "Candidate Search", icon: Users, progress: 33 },
-                  { label: "Evaluation", icon: CheckCircle, progress: 66 },
-                  { label: "Interview & Hire", icon: CheckCircle, progress: 100 },
-                ].map((step, index) => (
-                  <motion.div
-                    key={step.label}
-                    className="flex items-center gap-4"
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.5 + index * 0.15 }}
-                  >
-                    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center">
-                      <step.icon size={16} className="text-accent" />
-                    </div>
-                    <div className="flex-1">
-                      <div className="text-sm font-medium text-text">
-                        {step.label}
-                      </div>
-                      <div className="w-full bg-border rounded-full h-1 mt-1">
-                        <motion.div
-                          className="h-full bg-accent rounded-full"
-                          initial={{ width: 0 }}
-                          animate={{ width: `${step.progress}%` }}
-                          transition={{
-                            delay: 0.7 + index * 0.15,
-                            duration: 0.8,
-                          }}
-                        />
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
+            {stats.map((stat) => (
+              <div
+                key={stat.label}
+                className="bg-ink-2/80 px-6 py-7 text-center backdrop-blur-sm transition-colors duration-500 hover:bg-surface/80"
+              >
+                <div className="font-display text-3xl font-bold tracking-tight text-ember-gradient md:text-4xl">
+                  {stat.value}
+                </div>
+                <div className="mt-2 text-xs tracking-wide text-dim uppercase">
+                  {stat.label}
+                </div>
               </div>
-
-              {/* Decorative elements */}
-              <div className="absolute top-0 right-0 w-40 h-40 bg-accent/5 rounded-full -mr-20 -mt-20 blur-3xl" />
-              <div className="absolute bottom-0 left-0 w-40 h-40 bg-accent/5 rounded-full -ml-20 -mb-20 blur-3xl" />
-            </div>
+            ))}
           </motion.div>
-        </motion.div>
-      </Container>
+        </Container>
+      </motion.div>
+
+      {/* Ticker of roles and regions — range, without inventing client logos */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1.2, delay: 2 }}
+        className="absolute inset-x-0 bottom-0 border-t border-line/70 bg-ink/40 py-4 backdrop-blur-sm"
+      >
+        <Marquee
+          items={ticker.map((item, i) => (
+            <span
+              key={item}
+              className={
+                i % 2 === 0
+                  ? "font-display text-sm font-medium text-mist"
+                  : "text-sm text-dim"
+              }
+            >
+              {item}
+            </span>
+          ))}
+        />
+      </motion.div>
     </section>
   );
 }
