@@ -1,432 +1,141 @@
 @import "tailwindcss";
 
 /* ============================================================
-   Design tokens — "Obsidian & Ember"
-   A dark-locked, cinematic palette. Warm brand light against a
-   cool violet-black base, so accents read as glow, not as UI.
+   Design tokens
+   A light, restrained palette built around a single blue.
+   No glows, no gradients as decoration — colour carries meaning
+   or it does not appear.
    ============================================================ */
 
 @theme {
-  /* Base */
-  --color-void: #050409;
-  --color-ink: #09070f;
-  --color-ink-2: #0d0a16;
-  --color-surface: #13101f;
-  --color-surface-2: #1a1629;
-  --color-line: #262038;
-  --color-line-2: #342c4c;
+  /* Surfaces */
+  --color-page: #ffffff;
+  --color-subtle: #f7f9fc;
+  --color-sunken: #eef2f8;
+  --color-line: #e3e8ef;
+  --color-line-strong: #cdd5e0;
 
-  /* Text */
-  --color-chalk: #f6f3ef;
-  --color-mist: #aaa3bd;
-  --color-dim: #726a8a;
+  /* Ink */
+  --color-ink: #0f1b2d;
+  --color-body: #4a5567;
+  --color-muted: #6b7688;
 
   /* Brand */
-  --color-ember: #ff5a1f;
-  --color-flame: #ff8a3d;
-  --color-gold: #ffc24b;
-  --color-violet: #7c5cff;
-  --color-aurora: #2dd4bf;
+  --color-blue: #1d4ed8;
+  --color-blue-deep: #1a3ba8;
+  --color-blue-tint: #eef3ff;
+  --color-navy: #0e1e3a;
+  --color-navy-2: #16294c;
 
-  /* Type */
-  --font-display: var(--font-sora), ui-sans-serif, system-ui, sans-serif;
+  /* Type — one family, used well */
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-editorial: var(--font-instrument), ui-serif, Georgia, serif;
 
   /* Motion */
-  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-in-out-quint: cubic-bezier(0.83, 0, 0.17, 1);
-
-  --animate-drift-slow: drift 26s ease-in-out infinite;
-  --animate-drift-slower: drift 38s ease-in-out infinite reverse;
-  --animate-marquee: marquee 45s linear infinite;
-  --animate-marquee-reverse: marquee-reverse 55s linear infinite;
-  --animate-shine: shine 3.2s ease-in-out infinite;
-  --animate-breathe: breathe 6s ease-in-out infinite;
-  --animate-grain: grain 0.8s steps(6) infinite;
-
-  @keyframes drift {
-    0%,
-    100% {
-      transform: translate3d(0, 0, 0) scale(1);
-    }
-    33% {
-      transform: translate3d(6%, -8%, 0) scale(1.12);
-    }
-    66% {
-      transform: translate3d(-7%, 5%, 0) scale(0.94);
-    }
-  }
-
-  @keyframes marquee {
-    to {
-      transform: translateX(-50%);
-    }
-  }
-
-  @keyframes marquee-reverse {
-    from {
-      transform: translateX(-50%);
-    }
-    to {
-      transform: translateX(0);
-    }
-  }
-
-  @keyframes shine {
-    0% {
-      transform: translateX(-140%) skewX(-18deg);
-    }
-    55%,
-    100% {
-      transform: translateX(240%) skewX(-18deg);
-    }
-  }
-
-  @keyframes breathe {
-    0%,
-    100% {
-      opacity: 0.35;
-    }
-    50% {
-      opacity: 0.85;
-    }
-  }
-
-  @keyframes grain {
-    0% {
-      transform: translate(0, 0);
-    }
-    17% {
-      transform: translate(-3%, -4%);
-    }
-    34% {
-      transform: translate(2%, 5%);
-    }
-    51% {
-      transform: translate(-4%, 3%);
-    }
-    68% {
-      transform: translate(5%, -2%);
-    }
-    85% {
-      transform: translate(-2%, -5%);
-    }
-    100% {
-      transform: translate(0, 0);
-    }
-  }
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 /* ============================================================
    Base
    ============================================================ */
 
-:root {
-  color-scheme: dark;
-  --header-h: 4.5rem;
-}
-
-* {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: calc(var(--header-h) + 1rem);
-  background-color: var(--color-void);
+  /* Header is sticky; anchor targets need clearance. */
+  scroll-padding-top: 5.5rem;
 }
 
 body {
   font-family: var(--font-sans);
-  background-color: var(--color-ink);
-  color: var(--color-chalk);
-  overflow-x: hidden;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  background-color: var(--color-page);
+  color: var(--color-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 ::selection {
-  background: color-mix(in oklab, var(--color-ember) 40%, transparent);
-  color: var(--color-chalk);
+  background-color: var(--color-blue);
+  color: #ffffff;
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-gold);
-  outline-offset: 3px;
-  border-radius: 4px;
-}
-
-/* Lenis smooth scroll — native smoothing is off while Lenis drives the page */
-html.lenis,
-html.lenis body {
-  height: auto;
-}
-
-.lenis.lenis-smooth {
-  scroll-behavior: auto !important;
-}
-
-.lenis.lenis-smooth [data-lenis-prevent] {
-  overscroll-behavior: contain;
-}
-
-.lenis.lenis-stopped {
-  overflow: hidden;
-}
-
-/* Scrollbar */
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--color-void);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--color-line-2);
-  border-radius: 999px;
-  border: 3px solid var(--color-void);
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--color-ember);
+  outline: 2px solid var(--color-blue);
+  outline-offset: 2px;
+  border-radius: 2px;
 }
 
 /* ============================================================
-   Atmosphere — grain, grid, masks, glow
+   Typography scale
+   Fluid, but within tight bounds — no oversized display type.
    ============================================================ */
 
-@utility grain-overlay {
-  position: fixed;
-  inset: -150%;
-  z-index: 100;
-  pointer-events: none;
-  opacity: 0.045;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)'/%3E%3C/svg%3E");
-  animation: var(--animate-grain);
-  will-change: transform;
-}
-
-@utility grid-lines {
-  background-image: linear-gradient(
-      to right,
-      rgba(154, 138, 196, 0.16) 1px,
-      transparent 1px
-    ),
-    linear-gradient(to bottom, rgba(154, 138, 196, 0.16) 1px, transparent 1px);
-  background-size: 64px 64px;
-}
-
-@utility mask-fade-y {
-  mask-image: linear-gradient(
-    to bottom,
-    transparent,
-    black 18%,
-    black 82%,
-    transparent
-  );
-}
-
-@utility mask-fade-x {
-  mask-image: linear-gradient(
-    to right,
-    transparent,
-    black 12%,
-    black 88%,
-    transparent
-  );
-}
-
-@utility mask-radial-soft {
-  mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black, transparent);
-}
-
-/* Warm brand gradient for headlines and rules */
-@utility text-ember-gradient {
-  background: linear-gradient(
-    100deg,
-    var(--color-gold) 0%,
-    var(--color-flame) 42%,
-    var(--color-ember) 100%
-  );
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-}
-
-@utility text-chalk-gradient {
-  background: linear-gradient(
-    170deg,
-    var(--color-chalk) 20%,
-    color-mix(in oklab, var(--color-mist) 75%, transparent) 100%
-  );
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-}
-
-/*
- * Headline falloff. Done with a mask rather than a clipped background gradient:
- * a background-clip:text ancestor stops painting under descendants that carry
- * their own clipped background, which silently drops highlighted-adjacent words.
- * A mask applies to the whole subtree, highlights included.
- */
-@utility headline {
-  color: var(--color-chalk);
-  -webkit-mask-image: linear-gradient(
-    to bottom,
-    #000 0%,
-    #000 45%,
-    rgba(0, 0, 0, 0.74) 100%
-  );
-  mask-image: linear-gradient(
-    to bottom,
-    #000 0%,
-    #000 45%,
-    rgba(0, 0, 0, 0.74) 100%
-  );
-}
-
-/* Card with a hairline edge that lights up on hover */
-@utility edge-card {
-  position: relative;
-  border-radius: 1rem;
-  background: linear-gradient(
-    165deg,
-    color-mix(in oklab, var(--color-surface) 92%, transparent),
-    color-mix(in oklab, var(--color-ink-2) 92%, transparent)
-  );
-  border: 1px solid var(--color-line);
-  transition:
-    border-color 0.5s var(--ease-out-expo),
-    transform 0.5s var(--ease-out-expo),
-    background-color 0.5s var(--ease-out-expo);
-}
-
-/* Cursor-tracked highlight, driven by --mx/--my set in JS */
-@utility spotlight {
-  position: absolute;
-  inset: -1px;
-  border-radius: inherit;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.45s var(--ease-out-expo);
-  background: radial-gradient(
-    420px circle at var(--mx, 50%) var(--my, 50%),
-    color-mix(in oklab, var(--color-ember) 16%, transparent),
-    transparent 68%
-  );
-}
-
-.group:hover .spotlight {
-  opacity: 1;
-}
-
-@utility glow-ember {
-  box-shadow:
-    0 0 0 1px color-mix(in oklab, var(--color-ember) 45%, transparent),
-    0 12px 40px -12px color-mix(in oklab, var(--color-ember) 65%, transparent),
-    0 0 70px -30px color-mix(in oklab, var(--color-gold) 80%, transparent);
-}
-
-@utility hairline {
-  background: linear-gradient(
-    90deg,
-    transparent,
-    var(--color-line-2) 15%,
-    color-mix(in oklab, var(--color-ember) 55%, transparent) 50%,
-    var(--color-line-2) 85%,
-    transparent
-  );
-}
-
-/* Fluid display type — the cinematic scale */
-@utility text-cinema {
-  font-family: var(--font-display);
+.text-display {
+  font-size: clamp(2.25rem, 1.6rem + 2.8vw, 3.75rem);
+  line-height: 1.08;
+  letter-spacing: -0.03em;
   font-weight: 700;
-  font-size: clamp(2.75rem, 7.2vw, 6.5rem);
-  line-height: 0.95;
-  letter-spacing: -0.04em;
+  color: var(--color-ink);
 }
 
-@utility text-cinema-sm {
-  font-family: var(--font-display);
+.text-h2 {
+  font-size: clamp(1.75rem, 1.35rem + 1.7vw, 2.5rem);
+  line-height: 1.15;
+  letter-spacing: -0.022em;
   font-weight: 700;
-  font-size: clamp(2rem, 4.6vw, 3.75rem);
-  line-height: 1.02;
-  letter-spacing: -0.035em;
+  color: var(--color-ink);
 }
 
-@utility text-eyebrow {
-  font-size: 0.6875rem;
+.text-h3 {
+  font-size: 1.125rem;
+  line-height: 1.4;
+  letter-spacing: -0.011em;
   font-weight: 600;
-  letter-spacing: 0.22em;
+  color: var(--color-ink);
+}
+
+.text-lead {
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  color: var(--color-body);
+}
+
+.text-eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.09em;
   text-transform: uppercase;
+  color: var(--color-blue);
 }
 
 /* ============================================================
-   Range input — used by the savings estimator
+   Motion — one effect, applied consistently
    ============================================================ */
 
-.range-ember {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 100%;
-  height: 6px;
-  border-radius: 999px;
-  background: var(--color-line);
-  outline: none;
-  cursor: pointer;
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
-.range-ember::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 22px;
-  height: 22px;
-  border-radius: 999px;
-  background: linear-gradient(135deg, var(--color-gold), var(--color-ember));
-  border: 3px solid var(--color-ink);
-  box-shadow: 0 0 0 1px var(--color-line-2), 0 6px 18px -6px rgba(255, 90, 31, 0.9);
-  transition: transform 0.35s var(--ease-out-expo);
+.animate-rise {
+  animation: rise 0.55s var(--ease-out-soft) both;
 }
-
-.range-ember::-webkit-slider-thumb:hover {
-  transform: scale(1.15);
-}
-
-.range-ember::-moz-range-thumb {
-  width: 22px;
-  height: 22px;
-  border-radius: 999px;
-  background: linear-gradient(135deg, var(--color-gold), var(--color-ember));
-  border: 3px solid var(--color-ink);
-  box-shadow: 0 0 0 1px var(--color-line-2), 0 6px 18px -6px rgba(255, 90, 31, 0.9);
-  cursor: pointer;
-}
-
-.range-ember::-moz-range-track {
-  height: 6px;
-  border-radius: 999px;
-  background: var(--color-line);
-}
-
-/* ============================================================
-   Reduced motion
-   ============================================================ */
 
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
   *,
   *::before,
   *::after {
-    animation-duration: 0.001ms !important;
+    animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
-    transition-duration: 0.001ms !important;
-    scroll-behavior: auto !important;
-  }
-
-  .grain-overlay {
-    display: none;
+    transition-duration: 0.01ms !important;
   }
 }

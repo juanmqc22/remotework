@@ -3,8 +3,8 @@
 import React from "react";
 import { cn } from "@/lib/utils";
 
-type Variant = "primary" | "secondary" | "ghost";
-type Size = "sm" | "md" | "lg";
+type Variant = "primary" | "secondary" | "onDark";
+type Size = "md" | "lg";
 
 interface StyleProps {
   variant?: Variant;
@@ -22,35 +22,20 @@ type AnchorProps = StyleProps &
   };
 
 const base =
-  "group/btn relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full font-display font-semibold tracking-tight " +
-  "transition-[transform,box-shadow,background-color,border-color,color] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] " +
-  "hover:-translate-y-0.5 active:translate-y-0 active:duration-100 will-change-transform";
+  "inline-flex items-center justify-center gap-2 rounded-lg font-semibold " +
+  "transition-colors duration-200";
 
 const variants: Record<Variant, string> = {
-  primary:
-    "bg-linear-to-r from-gold via-flame to-ember text-void " +
-    "shadow-[0_10px_34px_-14px_rgba(255,90,31,0.9)] hover:shadow-[0_18px_48px_-14px_rgba(255,138,61,0.95)]",
+  primary: "bg-blue text-white hover:bg-blue-deep",
   secondary:
-    "border border-line-2 bg-surface/60 text-chalk backdrop-blur-md " +
-    "hover:border-ember/50 hover:bg-surface-2/80",
-  ghost: "text-mist hover:text-chalk hover:bg-surface/60",
+    "border border-line-strong bg-page text-ink hover:border-blue hover:text-blue",
+  onDark: "bg-white text-navy hover:bg-blue-tint",
 };
 
 const sizes: Record<Size, string> = {
-  sm: "px-4 py-2 text-sm",
-  md: "px-6 py-3 text-[0.9375rem]",
-  lg: "px-8 py-4 text-base",
+  md: "px-5 py-2.5 text-[0.9375rem]",
+  lg: "px-6 py-3.5 text-base",
 };
-
-/** Diagonal light sweep on hover. Primary only — it needs a bright base to read. */
-function Sheen() {
-  return (
-    <span
-      aria-hidden
-      className="pointer-events-none absolute inset-0 -translate-x-full skew-x-[-18deg] bg-linear-to-r from-transparent via-white/45 to-transparent transition-transform duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/btn:translate-x-[140%]"
-    />
-  );
-}
 
 function isAnchor(props: ButtonProps | AnchorProps): props is AnchorProps {
   return typeof (props as AnchorProps).href === "string";
@@ -66,22 +51,13 @@ export default function Button(props: ButtonProps | AnchorProps) {
   const { variant, size, className, children, rest } = split(props);
   const classes = cn(base, variants[variant], sizes[size], className);
 
-  const content = (
-    <>
-      {variant === "primary" && <Sheen />}
-      <span className="relative z-10 inline-flex items-center gap-2">
-        {children}
-      </span>
-    </>
-  );
-
   if (isAnchor(props)) {
     return (
       <a
         className={classes}
         {...(rest as React.AnchorHTMLAttributes<HTMLAnchorElement>)}
       >
-        {content}
+        {children}
       </a>
     );
   }
@@ -91,7 +67,7 @@ export default function Button(props: ButtonProps | AnchorProps) {
       className={classes}
       {...(rest as React.ButtonHTMLAttributes<HTMLButtonElement>)}
     >
-      {content}
+      {children}
     </button>
   );
 }
