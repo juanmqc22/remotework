@@ -4,43 +4,51 @@ import Reveal from "@/components/ui/Reveal";
 
 const terms = [
   {
-    headline: "12-month replacement guarantee",
-    body: "If a hire does not work out within their first twelve months — they leave, or the fit turns out to be wrong — we restart the search and place a replacement at no additional fee.",
+    lead: "12 months",
+    headline: "Replacement guarantee",
+    body: "If a hire does not work out within their first twelve months — they leave, or the fit turns out wrong — we restart the search and place a replacement at no additional fee.",
   },
   {
-    headline: "Nothing until someone starts",
+    lead: "$0",
+    headline: "Until someone starts",
     body: "No retainer, no engagement fee, no monthly minimum. Our fee is due on the hire's first day. If you never hire, the search costs you a kickoff call.",
   },
   {
-    headline: "No exclusivity, no lock-in",
+    lead: "No",
+    headline: "Exclusivity or lock-in",
     body: "Keep your own pipeline running. Work with other partners. Cancel a search mid-flight without penalty. We would rather earn the next role than contract our way into it.",
   },
 ];
 
 export default function Guarantee() {
   return (
-    <section id="guarantee" className="border-b border-line bg-navy">
-      <Container className="py-16 md:py-24">
-        <Reveal className="max-w-2xl">
-          <p className="text-eyebrow text-blue-tint">Our guarantee</p>
-          <h2 className="text-h2 mt-3 text-white">
+    <section id="guarantee" className="bg-abyss">
+      <Container className="py-24 md:py-36">
+        <Reveal className="max-w-3xl">
+          <p className="text-eyebrow text-ultra-glow">Our guarantee</p>
+          <h2 className="text-h2 mt-5 text-white">
             We carry the risk of the search. You carry none of it.
           </h2>
-          <p className="mt-4 text-lg leading-relaxed text-blue-tint/80">
-            Most agencies get paid for effort. We think that is backwards, so we
-            built the commercial terms the way we would want them if we were the
-            ones buying.
+          <p className="text-lead mt-7 max-w-xl text-[#a8afc9]">
+            Most agencies are paid for effort. We think that is backwards, so
+            we wrote the commercial terms the way we would want them if we were
+            the ones buying.
           </p>
         </Reveal>
 
-        <dl className="mt-12 grid gap-px overflow-hidden rounded-xl border border-white/10 bg-white/10 md:grid-cols-3">
+        <dl className="mt-20 grid gap-12 md:grid-cols-3 md:gap-10">
           {terms.map((term, i) => (
-            <Reveal key={term.headline} delay={i * 0.08} className="bg-navy">
-              <div className="h-full p-7">
-                <dt className="text-base font-semibold text-white">
-                  {term.headline}
+            <Reveal key={term.headline} delay={i * 120}>
+              <div className="border-t border-white/12 pt-7">
+                <dt>
+                  <span className="tabular block text-[2.5rem] leading-none font-bold tracking-[-0.04em] text-white">
+                    {term.lead}
+                  </span>
+                  <span className="mt-3 block text-base font-semibold text-ultra-glow">
+                    {term.headline}
+                  </span>
                 </dt>
-                <dd className="mt-3 text-sm leading-relaxed text-blue-tint/75">
+                <dd className="mt-4 text-[0.9375rem] leading-relaxed text-[#a8afc9]">
                   {term.body}
                 </dd>
               </div>
@@ -48,8 +56,8 @@ export default function Guarantee() {
           ))}
         </dl>
 
-        <Reveal delay={0.24}>
-          <p className="mt-10 max-w-2xl text-sm leading-relaxed text-blue-tint/60">
+        <Reveal delay={400}>
+          <p className="mt-16 text-sm text-[#7c8298]">
             Guarantee terms are confirmed in writing before any search begins.
           </p>
         </Reveal>

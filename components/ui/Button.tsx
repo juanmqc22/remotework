@@ -22,19 +22,22 @@ type AnchorProps = StyleProps &
   };
 
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-lg font-semibold " +
-  "transition-colors duration-200";
+  "inline-flex items-center justify-center gap-2 rounded-full font-semibold tracking-[-0.01em] " +
+  "transition-[background-color,border-color,color,transform,box-shadow] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] " +
+  "active:scale-[0.98] active:duration-100";
 
 const variants: Record<Variant, string> = {
-  primary: "bg-blue text-white hover:bg-blue-deep",
+  primary:
+    "bg-ultra text-white shadow-[0_8px_24px_-12px_rgba(27,46,229,0.7)] " +
+    "hover:bg-ultra-deep hover:shadow-[0_14px_34px_-12px_rgba(27,46,229,0.75)]",
   secondary:
-    "border border-line-strong bg-page text-ink hover:border-blue hover:text-blue",
-  onDark: "bg-white text-navy hover:bg-blue-tint",
+    "border border-rule-strong bg-transparent text-ink hover:border-ink hover:bg-ink hover:text-white",
+  onDark: "bg-white text-ink hover:bg-ultra-wash",
 };
 
 const sizes: Record<Size, string> = {
-  md: "px-5 py-2.5 text-[0.9375rem]",
-  lg: "px-6 py-3.5 text-base",
+  md: "px-5 py-2.5 text-[0.875rem]",
+  lg: "px-7 py-3.5 text-[0.9375rem]",
 };
 
 function isAnchor(props: ButtonProps | AnchorProps): props is AnchorProps {

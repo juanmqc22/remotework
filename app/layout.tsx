@@ -51,7 +51,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={inter.variable}>
-      <body className="bg-page text-body antialiased">{children}</body>
+      <head>
+        {/* .reveal starts at opacity 0 and is resolved by JS. Without this,
+            a client that never runs it would render a blank page. */}
+        <noscript>
+          <style>{`.reveal{opacity:1;transform:none;filter:none}`}</style>
+        </noscript>
+      </head>
+      <body className="bg-paper text-body antialiased">{children}</body>
     </html>
   );
 }

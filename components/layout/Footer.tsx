@@ -35,24 +35,24 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-line bg-subtle">
-      <Container className="py-14">
-        <div className="grid gap-10 md:grid-cols-[1.6fr_1fr_1fr]">
+    <footer className="border-t border-rule bg-mist">
+      <Container className="py-16">
+        <div className="grid gap-12 md:grid-cols-[1.7fr_1fr_1fr]">
           <div>
             <div className="flex items-center gap-2.5">
               <Logo />
-              <span className="text-[0.95rem] font-bold tracking-tight text-ink">
+              <span className="text-[0.9375rem] font-bold tracking-[-0.02em] text-ink">
                 Avante People
               </span>
             </div>
 
-            <p className="mt-4 max-w-sm text-sm leading-relaxed text-body">
+            <p className="mt-5 max-w-sm text-[0.9375rem] leading-relaxed text-body">
               We find, vet and deliver Latin American professionals to US
               companies — in your time zone, with a 12-month replacement
               guarantee.
             </p>
 
-            <p className="mt-5 text-sm text-muted">
+            <p className="mt-6 text-sm leading-relaxed text-muted">
               {regions.join(" · ")}
             </p>
           </div>
@@ -60,12 +60,12 @@ export default function Footer() {
           {columns.map((column) => (
             <div key={column.title}>
               <h3 className="text-sm font-semibold text-ink">{column.title}</h3>
-              <ul className="mt-4 space-y-2.5">
+              <ul className="mt-5 space-y-3">
                 {column.links.map((link) => (
                   <li key={link.label}>
                     <a
                       href={link.href}
-                      className="text-sm text-body transition-colors duration-200 hover:text-blue"
+                      className="text-sm text-body transition-colors duration-400 hover:text-ultra"
                     >
                       {link.label}
                     </a>
@@ -76,11 +76,11 @@ export default function Footer() {
           ))}
         </div>
 
-        <div className="mt-12 border-t border-line pt-6">
-          <p className="text-sm text-muted">
-            © {year} Avante People. All rights reserved.
-          </p>
-        </div>
+        <div className="rule-fade mt-14" />
+
+        <p className="mt-6 text-sm text-muted">
+          © {year} Avante People. All rights reserved.
+        </p>
       </Container>
     </footer>
   );

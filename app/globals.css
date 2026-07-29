@@ -2,36 +2,40 @@
 
 /* ============================================================
    Design tokens
-   A light, restrained palette built around a single blue.
-   No glows, no gradients as decoration — colour carries meaning
-   or it does not appear.
+
+   Near-monochrome base, one saturated ultramarine doing all the
+   colour work. Restraint is the point: when almost nothing is
+   coloured, the thing that is reads as deliberate.
    ============================================================ */
 
 @theme {
-  /* Surfaces */
-  --color-page: #ffffff;
-  --color-subtle: #f7f9fc;
-  --color-sunken: #eef2f8;
-  --color-line: #e3e8ef;
-  --color-line-strong: #cdd5e0;
+  /* Paper */
+  --color-paper: #ffffff;
+  --color-mist: #f3f4f9;
+  --color-fog: #e8eaf2;
+  --color-rule: #e2e4ee;
+  --color-rule-strong: #c9cddd;
 
   /* Ink */
-  --color-ink: #0f1b2d;
-  --color-body: #4a5567;
-  --color-muted: #6b7688;
+  --color-ink: #0b0e1c;
+  --color-body: #454b60;
+  --color-muted: #646a82;
 
-  /* Brand */
-  --color-blue: #1d4ed8;
-  --color-blue-deep: #1a3ba8;
-  --color-blue-tint: #eef3ff;
-  --color-navy: #0e1e3a;
-  --color-navy-2: #16294c;
+  /* Ultramarine — the whole brand, in one hue */
+  --color-ultra: #1b2ee5;
+  --color-ultra-deep: #101ca8;
+  --color-ultra-glow: #7c8cff;
+  --color-ultra-wash: #eef0ff;
 
-  /* Type — one family, used well */
+  /* Depth */
+  --color-abyss: #07091a;
+  --color-abyss-2: #101534;
+
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 
-  /* Motion */
-  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  /* Motion — long, decisive settles. Nothing bounces. */
+  --ease-settle: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-glide: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* ============================================================
@@ -40,95 +44,126 @@
 
 html {
   scroll-behavior: smooth;
-  /* Header is sticky; anchor targets need clearance. */
-  scroll-padding-top: 5.5rem;
+  scroll-padding-top: 5rem;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
   font-family: var(--font-sans);
-  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
-  background-color: var(--color-page);
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11", "ss03";
+  background-color: var(--color-paper);
   color: var(--color-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 ::selection {
-  background-color: var(--color-blue);
+  background-color: var(--color-ultra);
   color: #ffffff;
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-blue);
-  outline-offset: 2px;
-  border-radius: 2px;
+  outline: 2px solid var(--color-ultra);
+  outline-offset: 3px;
+  border-radius: 3px;
 }
 
 /* ============================================================
-   Typography scale
-   Fluid, but within tight bounds — no oversized display type.
+   Type scale
+
+   Large sizes get negative tracking that tightens as they grow —
+   the single strongest signal that type was set, not defaulted.
    ============================================================ */
 
 .text-display {
-  font-size: clamp(2.25rem, 1.6rem + 2.8vw, 3.75rem);
-  line-height: 1.08;
-  letter-spacing: -0.03em;
+  font-size: clamp(2.75rem, 1.7rem + 4.4vw, 5.25rem);
+  line-height: 0.98;
+  letter-spacing: -0.042em;
   font-weight: 700;
   color: var(--color-ink);
+  text-wrap: balance;
 }
 
 .text-h2 {
-  font-size: clamp(1.75rem, 1.35rem + 1.7vw, 2.5rem);
-  line-height: 1.15;
-  letter-spacing: -0.022em;
+  font-size: clamp(2rem, 1.4rem + 2.6vw, 3.5rem);
+  line-height: 1.04;
+  letter-spacing: -0.035em;
   font-weight: 700;
   color: var(--color-ink);
+  text-wrap: balance;
 }
 
 .text-h3 {
-  font-size: 1.125rem;
-  line-height: 1.4;
-  letter-spacing: -0.011em;
+  font-size: clamp(1.125rem, 1.05rem + 0.35vw, 1.3125rem);
+  line-height: 1.28;
+  letter-spacing: -0.018em;
   font-weight: 600;
   color: var(--color-ink);
 }
 
 .text-lead {
-  font-size: 1.0625rem;
-  line-height: 1.65;
+  font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.3125rem);
+  line-height: 1.5;
+  letter-spacing: -0.012em;
   color: var(--color-body);
+  text-wrap: pretty;
 }
 
 .text-eyebrow {
   font-size: 0.75rem;
   font-weight: 600;
-  letter-spacing: 0.09em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--color-blue);
+  color: var(--color-ultra);
+}
+
+/* Numerals in stat positions should never wobble on width. */
+.tabular {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
 }
 
 /* ============================================================
-   Motion — one effect, applied consistently
+   Reveal
+
+   opacity + lift + a hair of scale + defocus, resolving together
+   over ~1s. The blur is what separates this from a fade — it
+   reads as something coming into focus rather than turning on.
    ============================================================ */
 
-@keyframes rise {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
+.reveal {
+  opacity: 0;
+  transform: translate3d(0, 28px, 0) scale(0.985);
+  filter: blur(8px);
+  transition:
+    opacity 1s var(--ease-settle),
+    transform 1s var(--ease-settle),
+    filter 1s var(--ease-settle);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform, filter;
 }
 
-.animate-rise {
-  animation: rise 0.55s var(--ease-out-soft) both;
+.reveal[data-shown="true"] {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+
+/* Once it has landed, stop reserving a compositor layer for it. */
+.reveal[data-settled="true"] {
+  will-change: auto;
 }
 
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition: none;
   }
 
   *,
@@ -138,4 +173,20 @@ body {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+/* ============================================================
+   Utilities
+   ============================================================ */
+
+/* Hairline that fades out at both ends — used to close sections
+   without the hard stop of a full-width border. */
+.rule-fade {
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--color-rule-strong),
+    transparent
+  );
 }

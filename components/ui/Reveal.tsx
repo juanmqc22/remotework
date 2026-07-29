@@ -6,14 +6,17 @@ import { cn } from "@/lib/utils";
 interface RevealProps {
   children: React.ReactNode;
   className?: string;
-  /** Seconds to hold before animating in. Used to stagger siblings. */
+  /** Milliseconds to hold before resolving. Stagger siblings with this. */
   delay?: number;
-  as?: "div" | "li" | "section";
+  as?: "div" | "li" | "section" | "dd" | "dt";
 }
 
 /**
- * Fades content up once, the first time it enters the viewport.
- * Deliberately the only scroll effect on the site.
+ * Resolves content into place the first time it enters view: lift,
+ * a hair of scale, and a defocus pass, all landing together.
+ *
+ * The animation itself lives in CSS (.reveal) so it survives hydration
+ * without a flash — this only flips the data attribute.
  */
 export default function Reveal({
   children,
@@ -23,6 +26,7 @@ export default function Reveal({
 }: RevealProps) {
   const ref = useRef<HTMLElement>(null);
   const [shown, setShown] = useState(false);
+  const [settled, setSettled] = useState(false);
 
   useEffect(() => {
     const node = ref.current;
@@ -30,28 +34,27 @@ export default function Reveal({
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setShown(true);
-          observer.disconnect();
-        }
+        if (!entry.isIntersecting) return;
+        setShown(true);
+        observer.disconnect();
+        // Release the compositor layer once the transition has run.
+        window.setTimeout(() => setSettled(true), 1000 + delay);
       },
-      { rootMargin: "0px 0px -8% 0px", threshold: 0.05 }
+      { rootMargin: "0px 0px -12% 0px", threshold: 0.08 }
     );
 
     observer.observe(node);
     return () => observer.disconnect();
-  }, []);
+  }, [delay]);
 
   return (
     <Tag
       // Tag is polymorphic, so the ref type has to be widened by hand.
       ref={ref as React.Ref<HTMLDivElement & HTMLLIElement & HTMLElement>}
-      className={cn(
-        "transition-[opacity,transform] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none",
-        shown ? "translate-y-0 opacity-100" : "translate-y-3 opacity-0",
-        className
-      )}
-      style={delay ? { transitionDelay: `${delay}s` } : undefined}
+      className={cn("reveal", className)}
+      data-shown={shown || undefined}
+      data-settled={settled || undefined}
+      style={delay ? ({ "--reveal-delay": `${delay}ms` } as React.CSSProperties) : undefined}
     >
       {children}
     </Tag>
