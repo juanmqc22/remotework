@@ -37,7 +37,7 @@ function Chevron({ open }: { open: boolean }) {
     <span
       aria-hidden
       className={cn(
-        "mt-1 shrink-0 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]",
+        "mt-1 shrink-0 transition-transform duration-500 ease-settle",
         open ? "rotate-45" : "rotate-0"
       )}
     >
@@ -59,9 +59,9 @@ export default function FAQ() {
 
   return (
     <section id="faq" className="border-t border-rule">
-      <Container className="py-24 md:py-36">
+      <Container className="section">
         <div className="grid gap-12 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-20">
-          <Reveal className="lg:sticky lg:top-28 lg:self-start">
+          <Reveal className="lg:sticky-panel">
             <p className="text-eyebrow">Questions</p>
             <h2 className="text-h2 mt-5">
               The things people ask before they say yes.
@@ -80,8 +80,10 @@ export default function FAQ() {
                   <dt>
                     <button
                       type="button"
+                      id={`faq-q-${i}`}
                       onClick={() => setOpen(isOpen ? null : i)}
                       aria-expanded={isOpen}
+                      aria-controls={`faq-a-${i}`}
                       className="group flex w-full items-start justify-between gap-8 py-6 text-left"
                     >
                       <span
@@ -98,9 +100,17 @@ export default function FAQ() {
 
                   {/* Grid-rows trick: animates to the content's real height
                       without measuring it in JS. */}
+                  {/* `inert` rather than `hidden`: hidden would resolve to
+                      display:none and kill the collapse animation, but the
+                      collapsed panel still has to leave the accessibility
+                      tree or a screen reader announces every answer at once. */}
                   <dd
+                    id={`faq-a-${i}`}
+                    role="region"
+                    aria-labelledby={`faq-q-${i}`}
+                    inert={!isOpen}
                     className={cn(
-                      "grid transition-[grid-template-rows,opacity] duration-600 ease-[cubic-bezier(0.16,1,0.3,1)]",
+                      "grid transition-[grid-template-rows,opacity] duration-600 ease-settle",
                       isOpen
                         ? "grid-rows-[1fr] opacity-100"
                         : "grid-rows-[0fr] opacity-0"

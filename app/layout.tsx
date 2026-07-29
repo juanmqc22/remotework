@@ -58,7 +58,15 @@ export default function RootLayout({
           <style>{`.reveal{opacity:1;transform:none;filter:none}`}</style>
         </noscript>
       </head>
-      <body className="bg-paper text-body antialiased">{children}</body>
+      <body className="bg-paper text-body antialiased">
+        <a
+          href="#main"
+          className="skip-link rounded-full bg-ultra px-5 py-2.5 text-sm font-semibold text-white"
+        >
+          Skip to content
+        </a>
+        {children}
+      </body>
     </html>
   );
 }

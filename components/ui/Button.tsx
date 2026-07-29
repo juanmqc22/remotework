@@ -23,7 +23,7 @@ type AnchorProps = StyleProps &
 
 const base =
   "inline-flex items-center justify-center gap-2 rounded-full font-semibold tracking-[-0.01em] " +
-  "transition-[background-color,border-color,color,transform,box-shadow] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] " +
+  "transition-[background-color,border-color,color,transform,box-shadow] duration-500 ease-settle " +
   "active:scale-[0.98] active:duration-100";
 
 const variants: Record<Variant, string> = {

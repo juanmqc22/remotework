@@ -23,7 +23,7 @@ const terms = [
 export default function Guarantee() {
   return (
     <section id="guarantee" className="bg-abyss">
-      <Container className="py-24 md:py-36">
+      <Container className="section">
         <Reveal className="max-w-3xl">
           <p className="text-eyebrow text-ultra-glow">Our guarantee</p>
           <h2 className="text-h2 mt-5 text-white">
@@ -36,7 +36,7 @@ export default function Guarantee() {
           </p>
         </Reveal>
 
-        <dl className="mt-20 grid gap-12 md:grid-cols-3 md:gap-10">
+        <dl className="mt-20 grid gap-12 sm:grid-cols-2 sm:gap-10 lg:grid-cols-3">
           {terms.map((term, i) => (
             <Reveal key={term.headline} delay={i * 120}>
               <div className="border-t border-white/12 pt-7">

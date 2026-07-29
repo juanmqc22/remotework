@@ -37,14 +37,14 @@ export default function Header() {
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 transition-[background-color,border-color,backdrop-filter] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]",
+        "sticky top-0 z-50 transition-[background-color,border-color,backdrop-filter] duration-500 ease-settle",
         scrolled
           ? "border-b border-rule bg-paper/80 backdrop-blur-xl backdrop-saturate-150"
           : "border-b border-transparent bg-transparent"
       )}
     >
       <Container>
-        <div className="flex h-[4.5rem] items-center justify-between">
+        <div className="flex h-(--header-h) items-center justify-between">
           <a href="#top" className="group flex items-center gap-2.5">
             <Logo />
             <span className="text-[0.9375rem] font-bold tracking-[-0.02em] text-ink">
@@ -62,7 +62,7 @@ export default function Header() {
                 {link.label}
                 <span
                   aria-hidden
-                  className="absolute -bottom-1.5 left-0 h-px w-0 bg-ultra transition-[width] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:w-full"
+                  className="absolute -bottom-1.5 left-0 h-px w-0 bg-ultra transition-[width] duration-500 ease-settle group-hover:w-full"
                 />
               </a>
             ))}

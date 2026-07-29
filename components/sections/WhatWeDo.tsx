@@ -38,9 +38,9 @@ const columns = [
 export default function WhatWeDo() {
   return (
     <section id="what-we-do" className="border-t border-rule">
-      <Container className="py-24 md:py-36">
+      <Container className="section">
         <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] lg:gap-20">
-          <Reveal className="lg:sticky lg:top-28 lg:self-start">
+          <Reveal className="lg:sticky-panel">
             <p className="text-eyebrow">What we do</p>
             <h2 className="text-h2 mt-5">
               We are the recruiting team you never hired.

@@ -36,10 +36,10 @@ export default function Footer() {
 
   return (
     <footer className="border-t border-rule bg-mist">
-      <Container className="py-16">
+      <Container className="section-tight">
         <div className="grid gap-12 md:grid-cols-[1.7fr_1fr_1fr]">
           <div>
-            <div className="flex items-center gap-2.5">
+            <div className="group flex items-center gap-2.5">
               <Logo />
               <span className="text-[0.9375rem] font-bold tracking-[-0.02em] text-ink">
                 Avante People

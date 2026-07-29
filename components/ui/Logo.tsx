@@ -11,7 +11,7 @@ export default function Logo({ className }: { className?: string }) {
       aria-hidden
       className={cn(
         "flex size-[1.625rem] shrink-0 items-center justify-center rounded-[0.5rem] bg-ultra",
-        "transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-0.5",
+        "transition-transform duration-700 ease-settle group-hover:-translate-y-0.5",
         className
       )}
     >

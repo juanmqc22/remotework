@@ -33,9 +33,30 @@
 
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 
-  /* Motion — long, decisive settles. Nothing bounces. */
+  /* Motion — long, decisive settles. Nothing bounces.
+     Referenced as ease-settle / ease-glide, never re-typed inline. */
   --ease-settle: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-glide: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Layout — the widest container step, for ultrawide displays */
+  --container-canvas: 82rem;
+}
+
+/* ============================================================
+   Layout constants
+
+   Header height is the origin for three other measurements, so it
+   lives in one place. Change it here and the sticky panels, the
+   anchor offset and the scroll padding all follow.
+   ============================================================ */
+
+:root {
+  --header-h: 4.5rem;
+  --sticky-top: calc(var(--header-h) + 2.5rem);
+
+  /* Vertical rhythm. Section padding is one decision, not eleven. */
+  --space-section: clamp(5.5rem, 3.5rem + 6.5vw, 9rem);
+  --space-section-tight: clamp(4rem, 3rem + 4vw, 6rem);
 }
 
 /* ============================================================
@@ -44,7 +65,9 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 5rem;
+  /* Clear the sticky header, plus breathing room, when jumping to an
+     anchor — otherwise the target sits flush under it. */
+  scroll-padding-top: calc(var(--header-h) + 1.5rem);
   -webkit-text-size-adjust: 100%;
 }
 
@@ -124,12 +147,55 @@ body {
 }
 
 /* ============================================================
-   Reveal
-
-   opacity + lift + a hair of scale + defocus, resolving together
-   over ~1s. The blur is what separates this from a fade — it
-   reads as something coming into focus rather than turning on.
+   Section rhythm
    ============================================================ */
+
+.section {
+  padding-block: var(--space-section);
+}
+
+.section-tight {
+  padding-block: var(--space-section-tight);
+}
+
+/* Declared as a utility, not a plain class, so it can carry variants —
+   these panels only stick from the large breakpoint up. */
+@utility sticky-panel {
+  position: sticky;
+  top: var(--sticky-top);
+  align-self: start;
+}
+
+/* ============================================================
+   Entrances
+
+   Two mechanisms, deliberately separate:
+
+   .rise    above the fold. Pure CSS, runs at first paint. Nothing
+            here waits on hydration, so the largest contentful paint
+            is not held hostage by an observer.
+
+   .reveal  below the fold. Held at opacity 0 until scrolled into
+            view, then resolves opacity, lift, a hair of scale and a
+            defocus together. The blur is what makes it read as
+            coming into focus rather than switching on.
+   ============================================================ */
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 16px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.rise {
+  animation: rise 0.7s var(--ease-settle) both;
+  animation-delay: var(--rise-delay, 0ms);
+}
 
 .reveal {
   opacity: 0;
@@ -154,9 +220,22 @@ body {
   will-change: auto;
 }
 
+/* Blurring large areas is the expensive part of this effect, and
+   mobile GPUs are where it shows. Trade depth for frame rate. */
+@media (max-width: 767px) {
+  .reveal {
+    filter: blur(4px);
+    transform: translate3d(0, 20px, 0) scale(0.99);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  .rise {
+    animation: none;
   }
 
   .reveal {
@@ -189,4 +268,18 @@ body {
     var(--color-rule-strong),
     transparent
   );
+}
+
+/* Keyboard-only escape hatch past the navigation. */
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+  z-index: 100;
+  transform: translateY(-200%);
+  transition: transform 0.2s var(--ease-glide);
+}
+
+.skip-link:focus-visible {
+  transform: translateY(0);
 }

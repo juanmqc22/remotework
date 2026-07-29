@@ -25,7 +25,7 @@ const options = [
 export default function CTA() {
   return (
     <section id="contact" className="border-t border-rule">
-      <Container className="py-24 md:py-36">
+      <Container className="section">
         <Reveal className="max-w-3xl">
           <h2 className="text-h2">Start with a conversation.</h2>
           <p className="text-lead mt-7 max-w-xl">
@@ -35,12 +35,15 @@ export default function CTA() {
           </p>
         </Reveal>
 
-        <div className="mt-16 grid gap-px overflow-hidden rounded-2xl border border-rule bg-rule md:grid-cols-3">
+        {/* Three across only from lg. At the md breakpoint each column
+            would be ~208px, and after padding the body copy collapses to a
+            ~19-character ribbon. */}
+        <div className="mt-16 grid gap-px overflow-hidden rounded-2xl border border-rule bg-rule lg:grid-cols-3">
           {options.map((option, i) => (
             <Reveal key={option.title} delay={i * 110} className="bg-paper">
               <a
                 href={`mailto:${EMAIL}?subject=${encodeURIComponent(option.subject)}`}
-                className="group flex h-full flex-col p-8 transition-colors duration-500 hover:bg-ultra-wash md:p-10"
+                className="group flex h-full flex-col p-7 transition-colors duration-500 hover:bg-ultra-wash xl:p-10"
               >
                 <h3 className="text-h3 transition-colors duration-500 group-hover:text-ultra">
                   {option.title}
@@ -52,7 +55,7 @@ export default function CTA() {
                   Get in touch
                   <span
                     aria-hidden
-                    className="transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1"
+                    className="transition-transform duration-500 ease-settle group-hover:translate-x-1"
                   >
                     →
                   </span>

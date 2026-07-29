@@ -54,9 +54,9 @@ export default function Process() {
 
   return (
     <section id="process" className="border-t border-rule bg-mist">
-      <Container className="py-24 md:py-36">
+      <Container className="section">
         <div className="grid gap-14 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-20">
-          <div className="lg:sticky lg:top-28 lg:self-start">
+          <div className="lg:sticky-panel">
             <p className="text-eyebrow">How it works</p>
             <h2 className="text-h2 mt-5">Four days from brief to finalists.</h2>
             <p className="text-lead mt-6 max-w-md">
@@ -72,7 +72,7 @@ export default function Process() {
                 </span>
                 <div className="h-px flex-1 bg-rule-strong">
                   <div
-                    className="h-px bg-ultra transition-[width] duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
+                    className="h-px bg-ultra transition-[width] duration-700 ease-settle"
                     style={{
                       width: `${((active + 1) / steps.length) * 100}%`,
                     }}
@@ -95,7 +95,7 @@ export default function Process() {
                     stepRefs.current[i] = node;
                   }}
                   className={cn(
-                    "rounded-2xl border p-8 transition-[background-color,border-color,transform,box-shadow] duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] md:p-10",
+                    "rounded-2xl border p-8 transition-[background-color,border-color,transform,box-shadow] duration-700 ease-settle md:p-10",
                     isActive
                       ? "border-ultra/25 bg-paper shadow-[0_16px_50px_-28px_rgba(11,14,28,0.4)] lg:-translate-y-0.5"
                       : "border-transparent bg-paper/45"
