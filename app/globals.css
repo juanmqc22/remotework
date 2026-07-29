@@ -27,9 +27,13 @@
   --color-ultra-glow: #7c8cff;
   --color-ultra-wash: #eef0ff;
 
-  /* Depth */
-  --color-abyss: #07091a;
-  --color-abyss-2: #101534;
+  /* Depth — the dark field is a deep mix of the brand hue, not neutral
+     black. A near-black slab in an otherwise ultramarine site reads as
+     borrowed from somewhere else. */
+  --color-deep: #0b1250;
+  --color-deep-bright: #b8c2ff;
+  --color-deep-body: #b6bee0;
+  --color-deep-dim: #8b95c4;
 
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 
