@@ -3,10 +3,11 @@ import Container from "@/components/layout/Container";
 import Reveal from "@/components/ui/Reveal";
 
 /**
- * Values are kept short and comparable — "12", "$0", "0" — so they align
- * in one column. Mixing a nine-character phrase with a two-character one
- * at display size is what left the previous three-column version looking
- * half-empty.
+ * The content here is literally a set of commercial terms, so it is set
+ * as one: a white sheet laid on a tinted field, terms divided by
+ * hairlines. That also keeps it structurally distinct from the three
+ * sticky-split sections around it without reaching for an inverted
+ * colour scheme, which fought the rest of the site every time.
  */
 const terms = [
   {
@@ -31,59 +32,50 @@ const terms = [
 
 export default function Guarantee() {
   return (
-    <section id="guarantee" className="on-dark bg-deep">
+    <section id="guarantee" className="bg-ultra-wash">
       <Container className="section">
-        <Reveal className="max-w-3xl">
-          <p className="text-eyebrow text-deep-accent">Our guarantee</p>
-          <h2 className="text-h2 mt-5 text-white">
+        {/* Centred, unlike every other section on the page — the change of
+            axis is what marks this one out. */}
+        <Reveal className="mx-auto max-w-2xl text-center">
+          <p className="text-eyebrow">Our guarantee</p>
+          <h2 className="text-h2 mt-5">
             We carry the risk of the search. You carry none of it.
           </h2>
-          <p className="text-lead mt-6 max-w-xl text-deep-body">
+          <p className="text-lead mx-auto mt-6 max-w-xl">
             Most agencies are paid for effort. We think that is backwards, so
             we wrote the commercial terms the way we would want them if we were
             the ones buying.
           </p>
         </Reveal>
 
-        {/* Rows rather than columns: each term spans the full measure, so
-            nothing ends ragged and the values stay aligned down one edge. */}
-        <dl className="mt-14">
-          {terms.map((term, i) => (
-            <Reveal
-              key={term.headline}
-              delay={i * 100}
-              className="grid gap-x-12 gap-y-4 border-t border-white/20 py-8 md:grid-cols-[11rem_minmax(0,1fr)] md:py-10"
-            >
-              <dt className="flex items-baseline gap-2">
-                <span className="tabular text-[clamp(2.5rem,2.1rem+1.6vw,3.25rem)] leading-none font-bold tracking-[-0.045em] text-white">
-                  {term.value}
-                </span>
-                <span className="text-sm font-medium text-deep-dim">
-                  {term.unit}
-                </span>
-              </dt>
-
-              <dd className="max-w-2xl">
-                <span className="block text-lg font-semibold text-deep-bright">
-                  {term.headline}
-                </span>
-                <p className="mt-2.5 leading-relaxed text-deep-body">
+        <Reveal delay={120} className="mt-14">
+          <dl className="overflow-hidden rounded-2xl border border-rule bg-paper shadow-[0_20px_60px_-40px_rgba(11,14,28,0.45)] lg:grid lg:grid-cols-3">
+            {terms.map((term) => (
+              <div
+                key={term.headline}
+                className="border-t border-rule p-8 first:border-t-0 md:p-10 lg:border-t-0 lg:border-l lg:first:border-l-0"
+              >
+                <dt>
+                  <span className="flex items-baseline gap-2">
+                    <span className="tabular text-[clamp(2.5rem,2.1rem+1.6vw,3.25rem)] leading-none font-bold tracking-[-0.045em] text-ultra">
+                      {term.value}
+                    </span>
+                    <span className="text-sm font-medium text-muted">
+                      {term.unit}
+                    </span>
+                  </span>
+                  <span className="text-h3 mt-6 block">{term.headline}</span>
+                </dt>
+                <dd className="mt-3 text-[0.9375rem] leading-relaxed text-body">
                   {term.body}
-                </p>
-              </dd>
-            </Reveal>
-          ))}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </Reveal>
 
-        </dl>
-
-        {/* Closes the list on the same hairline rhythm instead of floating
-            alone under a large gap. Outside the <dl>, which only admits
-            dt/dd pairs and the divs that wrap them. */}
-        <Reveal
-          delay={300}
-          className="border-t border-white/20 pt-6 md:grid md:grid-cols-[11rem_minmax(0,1fr)] md:gap-x-12"
-        >
-          <p className="text-sm text-deep-dim md:col-start-2">
+        <Reveal delay={220}>
+          <p className="mt-8 text-center text-sm text-muted">
             Guarantee terms are confirmed in writing before any search begins.
           </p>
         </Reveal>
