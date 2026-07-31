@@ -34,12 +34,17 @@
      luminance only, so blue type on a blue field can clear AA and still
      read badly: at 1–5° of hue separation the eye gets no help from
      colour, just brightness. Holding these near grey buys that
-     separation back. */
-  --color-deep: #0b1250;
-  --color-deep-accent: #cdd4f5;
-  --color-deep-bright: #dfe2ec;
-  --color-deep-body: #c3c8d8;
-  --color-deep-dim: #a6acc0;
+     separation back.
+
+     Depth and saturation both work for legibility too: a darker, less
+     saturated field lifts every ratio at once, and saturated blue at low
+     luminance is exactly where the eye has least acuity. Every value on
+     this field now clears AAA, the weakest at 9.79:1. */
+  --color-deep: #0a1030;
+  --color-deep-accent: #dce1f8;
+  --color-deep-bright: #eaecf3;
+  --color-deep-body: #d2d6e2;
+  --color-deep-dim: #b6bccd;
 
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 

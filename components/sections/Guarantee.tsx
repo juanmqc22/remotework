@@ -52,7 +52,7 @@ export default function Guarantee() {
             <Reveal
               key={term.headline}
               delay={i * 100}
-              className="grid gap-x-12 gap-y-4 border-t border-white/15 py-8 md:grid-cols-[11rem_minmax(0,1fr)] md:py-10"
+              className="grid gap-x-12 gap-y-4 border-t border-white/20 py-8 md:grid-cols-[11rem_minmax(0,1fr)] md:py-10"
             >
               <dt className="flex items-baseline gap-2">
                 <span className="tabular text-[clamp(2.5rem,2.1rem+1.6vw,3.25rem)] leading-none font-bold tracking-[-0.045em] text-white">
@@ -81,7 +81,7 @@ export default function Guarantee() {
             dt/dd pairs and the divs that wrap them. */}
         <Reveal
           delay={300}
-          className="border-t border-white/15 pt-6 md:grid md:grid-cols-[11rem_minmax(0,1fr)] md:gap-x-12"
+          className="border-t border-white/20 pt-6 md:grid md:grid-cols-[11rem_minmax(0,1fr)] md:gap-x-12"
         >
           <p className="text-sm text-deep-dim md:col-start-2">
             Guarantee terms are confirmed in writing before any search begins.
