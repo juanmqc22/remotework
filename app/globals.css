@@ -161,6 +161,31 @@ body {
   font-feature-settings: "tnum";
 }
 
+/* ------------------------------------------------------------
+   Optical compensation for light type on a dark field
+
+   Glyphs irradiate against dark ground: they bleed outward and read
+   heavier and closer together than the identical setting on white.
+   The scale above is tuned for dark-on-light, so inverted it needs
+   tracking, leading and weight all opened up to land at the same
+   perceived density.
+
+   At 1.04 the heading left roughly 2px between glyph bodies — fine on
+   white, gone once irradiation closes it.
+   ------------------------------------------------------------ */
+
+.on-dark .text-h2 {
+  font-size: clamp(1.875rem, 1.4rem + 2.2vw, 3.125rem);
+  line-height: 1.16;
+  letter-spacing: -0.018em;
+  font-weight: 600;
+}
+
+.on-dark .text-lead {
+  line-height: 1.62;
+  letter-spacing: 0;
+}
+
 /* ============================================================
    Section rhythm
    ============================================================ */

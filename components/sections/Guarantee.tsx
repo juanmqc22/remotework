@@ -31,7 +31,7 @@ const terms = [
 
 export default function Guarantee() {
   return (
-    <section id="guarantee" className="bg-deep">
+    <section id="guarantee" className="on-dark bg-deep">
       <Container className="section">
         <Reveal className="max-w-3xl">
           <p className="text-eyebrow text-deep-accent">Our guarantee</p>
