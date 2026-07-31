@@ -49,9 +49,14 @@
   --header-h: 4.5rem;
   --sticky-top: calc(var(--header-h) + 2.5rem);
 
-  /* Vertical rhythm. Section padding is one decision, not eleven. */
-  --space-section: clamp(5.5rem, 3.5rem + 6.5vw, 9rem);
-  --space-section-tight: clamp(4rem, 3rem + 4vw, 6rem);
+  /* Vertical rhythm. Section padding is one decision, not eleven.
+
+     It also sets how much dead space an anchor jump lands you in: the
+     header clears, then this much padding runs before the first line.
+     Anything larger and a jumped-to section opens on a third of a
+     screen of nothing, with its own content pushed past the fold. */
+  --space-section: clamp(4rem, 2.75rem + 4.5vw, 6.5rem);
+  --space-section-tight: clamp(3.5rem, 2.75rem + 3vw, 5rem);
 }
 
 /* ============================================================
@@ -60,9 +65,12 @@
 
 html {
   scroll-behavior: smooth;
-  /* Clear the sticky header, plus breathing room, when jumping to an
-     anchor — otherwise the target sits flush under it. */
-  scroll-padding-top: calc(var(--header-h) + 1.5rem);
+  /* Land the section's own top edge exactly under the header. Adding
+     breathing room on top of this does not create space above the
+     section — it scrolls short, leaving the previous section's bottom
+     padding on screen, which reads as a loose gap under the header.
+     The section's own padding is what supplies the room. */
+  scroll-padding-top: var(--header-h);
   -webkit-text-size-adjust: 100%;
 }
 
