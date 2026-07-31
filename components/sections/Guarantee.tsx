@@ -34,7 +34,7 @@ export default function Guarantee() {
     <section id="guarantee" className="bg-deep">
       <Container className="section">
         <Reveal className="max-w-3xl">
-          <p className="text-eyebrow text-ultra-glow">Our guarantee</p>
+          <p className="text-eyebrow text-deep-accent">Our guarantee</p>
           <h2 className="text-h2 mt-5 text-white">
             We carry the risk of the search. You carry none of it.
           </h2>

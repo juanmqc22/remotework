@@ -28,7 +28,7 @@ export default function Hero() {
         className="pointer-events-none absolute inset-x-0 top-0 h-[min(38rem,85%)] bg-gradient-to-b from-ultra-wash to-transparent"
       />
 
-      <Container className="section relative">
+      <Container className="section-hero relative">
         <div className="max-w-4xl">
           <p className="text-eyebrow rise" style={rise(0)}>
             Nearshore talent, US hours
