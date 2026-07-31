@@ -46,17 +46,23 @@
    ============================================================ */
 
 :root {
+  /* Content box of the header bar. The element is a pixel taller than
+     this because of its bottom border, and anything positioning against
+     the header has to use the full height or it lands a pixel under it. */
   --header-h: 4.5rem;
-  --sticky-top: calc(var(--header-h) + 2.5rem);
+  --header-total: calc(var(--header-h) + 1px);
+  --sticky-top: calc(var(--header-total) + 2.5rem);
 
   /* Vertical rhythm. Section padding is one decision, not eleven.
 
-     It also sets how much dead space an anchor jump lands you in: the
-     header clears, then this much padding runs before the first line.
-     Anything larger and a jumped-to section opens on a third of a
-     screen of nothing, with its own content pushed past the fold. */
-  --space-section: clamp(4rem, 2.75rem + 4.5vw, 6.5rem);
-  --space-section-tight: clamp(3.5rem, 2.75rem + 3vw, 5rem);
+     It scales on whichever viewport axis is more constrained, because
+     vertical space is what this padding actually spends. Keyed to width
+     alone, a short wide window — a laptop at 640px, or any browser with
+     bookmarks and a console open — gets the padding of a large display
+     while having half its height, and an anchor jump lands on a third
+     of a screen of nothing with the content pushed past the fold. */
+  --space-section: clamp(3rem, min(2.75rem + 4.5vw, 1.5rem + 7vh), 6.5rem);
+  --space-section-tight: clamp(2.75rem, min(2.75rem + 3vw, 1.25rem + 5.5vh), 5rem);
 }
 
 /* ============================================================
@@ -70,7 +76,7 @@ html {
      section — it scrolls short, leaving the previous section's bottom
      padding on screen, which reads as a loose gap under the header.
      The section's own padding is what supplies the room. */
-  scroll-padding-top: var(--header-h);
+  scroll-padding-top: var(--header-total);
   -webkit-text-size-adjust: 100%;
 }
 
@@ -101,8 +107,12 @@ body {
    the single strongest signal that type was set, not defaulted.
    ============================================================ */
 
+/* Display sizes take the smaller of what width and height can afford.
+   Keyed to width alone, an 84px headline lands the same on a 1080px-tall
+   display and on a 560px laptop window, where three lines of it plus the
+   lead push the call to action off the fold. */
 .text-display {
-  font-size: clamp(2.75rem, 1.7rem + 4.4vw, 5.25rem);
+  font-size: clamp(2.5rem, min(1.7rem + 4.4vw, 1.5rem + 5.5vh), 5.25rem);
   line-height: 0.98;
   letter-spacing: -0.042em;
   font-weight: 700;
@@ -111,7 +121,7 @@ body {
 }
 
 .text-h2 {
-  font-size: clamp(2rem, 1.4rem + 2.6vw, 3.5rem);
+  font-size: clamp(1.75rem, min(1.4rem + 2.6vw, 1.25rem + 3.6vh), 3.5rem);
   line-height: 1.04;
   letter-spacing: -0.035em;
   font-weight: 700;
@@ -167,7 +177,7 @@ body {
    full section padding pushed the first line ~216px down the viewport
    and cost the fold most of its height. */
 .section-hero {
-  padding-top: clamp(2rem, 1.25rem + 2.5vw, 3.5rem);
+  padding-top: clamp(1.5rem, min(1.25rem + 2.5vw, 0.75rem + 3.5vh), 3.5rem);
   padding-bottom: var(--space-section);
 }
 
