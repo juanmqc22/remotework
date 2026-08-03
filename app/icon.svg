@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+  <!-- Avante People. Same geometry as components/ui/Logo.tsx. -->
+  <rect width="24" height="24" rx="7.2" fill="#1b2ee5" />
+  <g fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 20 12 4.4 20 20" />
+    <path d="M6.36 15.4h11.28" />
+  </g>
+</svg>
